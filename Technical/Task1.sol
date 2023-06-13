@@ -33,7 +33,7 @@ contract FundMe{
         if(duplicateAddress==false){
             funders.push(msg.sender);
         }
-        //----------------------------------------------------------------------
+        //--------------------------------------------------------------------->
         
         addressToAmountFunded[msg.sender]+=msg.value;
     }
