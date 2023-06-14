@@ -13,17 +13,23 @@ contract FundMe{
     address[] public funders;
     mapping(address=>uint256) public addressToAmountFunded;
 
-    address public immutable i_owner;
+    address public immutable owner;
 
     constructor(){
-        i_owner=msg.sender;
+        owner=msg.sender;
     }
+
+    //TASK.1.b)------------------------------------------------------------------->
+    function transferOwnership (address newOwner) public {
+        owner=newOwner;
+    }
+    //------------------------------------------------------------------------>
 
     function fund() public payable{
         
         require(msg.value.getConversionRate() >= MINIMUM_USD, "didnt send enough!");
 
-        //TASK-1-------------------------------------------------------------->
+        //TASK.1.a)-------------------------------------------------------------->
         bool duplicateAddress=false;
         for(uint256 funderIndex=0; funderIndex<funders.length; funderIndex++){
             if(funders[funderIndex]==msg.sender){
@@ -51,8 +57,8 @@ contract FundMe{
     }
 
     modifier onlyOwner{
-        // require(msg.sender==i_owner, "sender is not the owner");
-        if(msg.sender!=i_owner){
+        // require(msg.sender==owner, "sender is not the owner");
+        if(msg.sender!=owner){
             revert NotOwner();
         }
         _;
