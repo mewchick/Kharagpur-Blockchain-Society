@@ -23,7 +23,7 @@ contract FundMe{
     function transferOwnership (address newOwner) public {
         owner=newOwner;
     }
-    //------------------------------------------------------------------------>
+    //---------------------------------------------------------------------------->
 
     function fund() public payable{
         
@@ -39,7 +39,7 @@ contract FundMe{
         if(duplicateAddress==false){
             funders.push(msg.sender);
         }
-        //--------------------------------------------------------------------->
+        //----------------------------------------------------------------------->
         
         addressToAmountFunded[msg.sender]+=msg.value;
     }
