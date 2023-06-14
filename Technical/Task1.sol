@@ -19,17 +19,17 @@ contract FundMe{
         owner=msg.sender;
     }
 
-    //TASK.1.b)------------------------------------------------------------------->
+    //TASK.1.b)------------------------------------------------------------------------------------------->
     function transferOwnership (address newOwner) public {
         owner=newOwner;
     }
-    //---------------------------------------------------------------------------->
+    //---------------------------------------------------------------------------------------------------->
 
     function fund() public payable{
         
         require(msg.value.getConversionRate() >= MINIMUM_USD, "didnt send enough!");
 
-        //TASK.1.a)-------------------------------------------------------------->
+        //TASK.1.a)---------------------------------------------------------------------------------------->
         bool duplicateAddress=false;
         for(uint256 funderIndex=0; funderIndex<funders.length; funderIndex++){
             if(funders[funderIndex]==msg.sender){
@@ -39,7 +39,7 @@ contract FundMe{
         if(duplicateAddress==false){
             funders.push(msg.sender);
         }
-        //----------------------------------------------------------------------->
+        //------------------------------------------------------------------------------------------------->
         
         addressToAmountFunded[msg.sender]+=msg.value;
     }
